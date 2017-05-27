@@ -23,8 +23,11 @@ MaxMind обновляет базу раз в месяц.
  
 ```json
 {
-  "country":"США",
-  "city":"Маунтин-Вью"
+  "country": "США",
+  "city": "Маунтин-Вью",
+  "latitude": 37.386,
+  "longitude": -122.0838,
+  "time_zone": "America/Los_Angeles"
 }
 ```
 * `400` если ничего не найдено

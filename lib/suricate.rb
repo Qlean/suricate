@@ -18,7 +18,10 @@ class Suricate < Sinatra::Base
 
     result = {
       country: ret.country.name(params[:language]),
-      city:    ret.city.name(params[:language])
+      city:    ret.city.name(params[:language]),
+      latitude: ret.location.latitude,
+      longitude: ret.location.longitude,
+      time_zone: ret.location.time_zone
     }
     content_type 'application/json; charset=utf-8'
     halt 200, JSON.dump(result)
