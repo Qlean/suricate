@@ -1,11 +1,10 @@
-FROM ruby:2.3-alpine
+FROM ruby:2.3.6-alpine
 MAINTAINER anton.osenenko@gmail.com
 
 ENV LANG C.UTF-8
 ENV TERM xterm-256color
 
-RUN gem update --system && \
-    apk add --update --no-cache \
+RUN apk add --update --no-cache \
     bash \
     git \
     curl \
