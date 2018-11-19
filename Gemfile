@@ -14,3 +14,5 @@ gem 'ripl-multi_line'
 gem 'ripl-color_streams'
 gem 'ripl-color_result'
 gem 'ripl-short_errors'
+gem "rack", ">= 1.6.11"
+gem "rerun"
