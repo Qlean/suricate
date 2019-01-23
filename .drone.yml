@@ -85,7 +85,7 @@ pipeline:
         target: slack_webhook
     when:
       status: [ success, failure ]
-      event: [ deployment, push ]
+      event: [ deployment ]
       branch: master
     template: >
       <${DRONE_BUILD_LINK}|Deploy to production> STARTED
@@ -104,7 +104,7 @@ pipeline:
       - /var/lib/cache/infrastructure:/infrastructure
     secrets: [ consul_token ]
     when:
-      event: [ deployment, push ]
+      event: [ deployment ]
       branch: master
 
   slack_deploy_finish:
@@ -116,7 +116,7 @@ pipeline:
         target: slack_webhook
     when:
       status: [ success, failure ]
-      event: [ deployment, push ]
+      event: [ deployment ]
       branch: master
     template: >
        {{#success build.status}}
