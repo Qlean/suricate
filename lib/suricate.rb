@@ -1,4 +1,14 @@
 class Suricate < Sinatra::Base
+
+require 'jaeger/client'
+require 'opentracing'
+
+OpenTracing.global_tracer = Jaeger::Client.build(
+  # service_name: Rails.application.class.parent_name,
+  service_name: 'suricate',
+  host: 'tracing-jaeger-0.staging.node.dc3.consul',
+  port: 6831)
+
   helpers Sinatra::Param
 
   helpers do
@@ -12,6 +22,7 @@ class Suricate < Sinatra::Base
     param :ip, String, required: true, format: ip_regexp
     param :language, String, in: %w(en ru), default: 'ru'
 
+    OpenTracing.inject(OpenTracing.active_span.context, OpenTracing::FORMAT_RACK, {} )
     ret = self.class.db.lookup(params[:ip])
     halt 404 unless ret.found?
     halt 404 if ret.country.name.nil? || ret.city.name.nil?

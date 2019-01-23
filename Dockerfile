@@ -13,7 +13,8 @@ RUN apk add --update --no-cache \
 WORKDIR /app
 
 ADD Gemfile Gemfile.lock /app/
-RUN bundle install --deployment
+RUN bundle install
+# --deployment
 
 ADD config.ru Rakefile /app/
 ADD config /app/config
