@@ -1,5 +1,12 @@
 FROM ruby:2.3.6-alpine
-MAINTAINER anton.osenenko@gmail.com
+
+ARG BUILD_SOURCE
+ARG REPO_NAME
+ARG REPO_OWNER
+
+LABEL org.opencontainers.image.vendor=${REPO_OWNER} \
+      org.opencontainers.image.title=${REPO_NAME} \
+      org.opencontainers.image.source=${BUILD_SOURCE}
 
 ENV LANG C.UTF-8
 ENV TERM xterm-256color
